@@ -19,7 +19,7 @@ public class MainTest {
     }
 
     @Test
-    //כניסה לחשבון  ובחירת הגדרות מתנה
+    //בחירת הגדרות מתנה
     public void test02_loggedIn() throws InterruptedException {
         HomeScreen homeScreen = new HomeScreen();
         homeScreen.loggedIn();
@@ -35,12 +35,14 @@ public class MainTest {
     }
 
     @Test
+    //הזנת פרטי מקבל המתנה
     public void test_04_ReceiverInformation() throws InterruptedException {
         ReceiverInformation receiverInformation = new ReceiverInformation();
         receiverInformation.receiverInformation();
     }
 
     @Test
+    //הזנת פרטי שולח המתנה
     public void test_05_sendInformation() throws InterruptedException {
         SendInformation sendInformation =new SendInformation();
         sendInformation.sendInformation();
