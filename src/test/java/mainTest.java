@@ -8,6 +8,7 @@ public class mainTest {
     public void beforeAll() {
         DriverSingleton.getDriverInstance().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         DriverSingleton.getDriverInstance().get("https://buyme.co.il/");
+        DriverSingleton.getDriverInstance().manage().window().maximize();
     }
 
     @Test
