@@ -16,5 +16,11 @@ public class BasePage {
         return DriverSingleton.getDriverInstance().findElement(locator);
     }
 
+    public WebElement getWebElementPublic(By locator) {
+        return DriverSingleton.getDriverInstance().findElement(locator);
+    }
+
+
+
 
 }

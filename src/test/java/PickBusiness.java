@@ -10,14 +10,16 @@ public class PickBusiness extends BasePage{
     }
 private void selectBusiness()
 {
-    clickElement(By.xpath("//*[@id=\"ember1481\"]"));
+    clickElement(By.id("ember2035"));
 }
 private void choosePrice(){
-        sendKeysToElement(By.xpath("//*[@id=\"ember1755\"]"), "200");
+        sendKeysToElement(By.cssSelector("input[type=tel]"), "200");
 
 }
 
 private void pressChoose(){
-        clickElement(By.xpath("//*[@id=\"ember1753\"]/div[2]"));
+        clickElement(By.className("money-btn"));
 }
 }
+
+

@@ -1,48 +1,46 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 //screen 2
 public class HomeScreen extends BasePage {
-    public void loggedIn() {
-       pressLogin();
-        enterUserDetails();
-        pressIn();
-       pickPricePoint();
+    //    private static WebDriverWait wait;
+    WebDriverWait wait = new WebDriverWait(DriverSingleton.getDriverInstance(), Duration.ofSeconds(10));
+
+    public void loggedIn() throws InterruptedException {
+        pickPricePoint();
         PickRegion();
         PickCategory();
-
+        pressChooseGift();
     }
 
-   private void pressLogin() {
-        clickElement(By.xpath("//*[@id=\"ember993\"]/div/ul[1]/li[3]/a/span"));
+    private void pickPricePoint() throws InterruptedException {
+        WebElement price = DriverSingleton.getDriverInstance().findElement(By.cssSelector("span[alt=סכום]"));
+        wait.until(ExpectedConditions.elementToBeClickable(price));
+        price.click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("ember1066"))).click();
     }
 
-   private void enterUserDetails() {
-        sendKeysToElement(By.xpath("//*[@id=\"ember1768\"]"), "sp0548412037@gmail.com");
-        sendKeysToElement(By.xpath("//*[@id=\"ember1775\"]"), "Sp123456");
+    private void PickRegion() {
+        clickElement(By.cssSelector("span[alt=אזור]"));
+        clickElement(By.id("ember1103"));
     }
 
-   private void pressIn()
-    {
-       clickElement(By.xpath("//*[@id=\"ember1784\"]"));
-    }
-
-
-   private void pickPricePoint() {
-       clickElement(By.cssSelector("span[alt='סכום']"));
-       clickElement(By.id("ember2147"));
-
-   }
-
-    private void PickRegion(){
-           clickElement(By.cssSelector("span[alt=אזור]"));
-           clickElement(By.id("ember2169"));
-    }
-
-
-    private void PickCategory(){
+    private void PickCategory() {
         clickElement(By.cssSelector("span[alt=קטגוריה]"));
-        clickElement(By.id("ember2200"));
+        clickElement(By.id("ember1161"));
+
+//        WebElement category = DriverSingleton.getDriverInstance().findElement(By.cssSelector("span[alt=קטגוריה]"));
+//        wait.until(ExpectedConditions.elementToBeClickable(category));
+//        category.click();
+//        wait.until(ExpectedConditions.elementToBeClickable(By.id("ember2563"))).click();
+    }
+
+    private void pressChooseGift() {
+        clickElement(By.id("ember1188"));
     }
 
 
