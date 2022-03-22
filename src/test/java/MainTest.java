@@ -3,7 +3,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import java.time.Duration;
 
-public class mainTest {
+public class MainTest {
     @BeforeClass
     public void beforeAll() {
         DriverSingleton.getDriverInstance().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
