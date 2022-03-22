@@ -41,7 +41,7 @@ public class mainTest {
     }
 
     @Test
-    public void test_05_sendInformation(){
+    public void test_05_sendInformation() throws InterruptedException {
         SendInformation sendInformation =new SendInformation();
         sendInformation.sendInformation();
     }

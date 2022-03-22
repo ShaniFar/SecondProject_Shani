@@ -12,19 +12,20 @@ public class LoginPage extends BasePage {
         pressRegister3();
     }
 
+    //לחיצה על כניסה\הרשמה
     private void pressRegister() {
         clickElement(By.xpath("//*[@id=\"ember993\"]/div/ul[1]/li[3]/a/span"));
     }
 
+    //לחיצה על הרשמה
     private void pressRegister2() {
         clickElement(By.className("text-link"));
     }
 
-    private  void enterValues() {
-
+    //הכנסת ערכים לשדות ההרשמה
+    private void enterValues() {
         sendKeysToElement(By.xpath("//*[@id=\"ember1795\"]"), Constant.name);
         String name = DriverSingleton.getDriverInstance().findElement(By.xpath("//*[@id=\"ember1795\"]")).getAttribute("value");
-//        System.out.println(name);
         Assert.assertEquals(name, Constant.name);
         sendKeysToElement(By.xpath("//*[@id=\"ember1802\"]"), Constant.email);
         String email = DriverSingleton.getDriverInstance().findElement(By.xpath("//*[@id=\"ember1802\"]")).getAttribute("value");
@@ -38,14 +39,13 @@ public class LoginPage extends BasePage {
 
     }
 
-    private void assertLoginValues() {
+    /*  private void assertLoginValues() {
+          String firstName = "Shani";
+          String email = "sp0548412037@gmail.com";
+          String password = "Sp123456";
 
-        String firstName = "Shani";
-        String email = "sp0548412037@gmail.com";
-        String password = "Sp123456";
-
-    }
-
+      }*/
+//לחיצה על הרשמה לBUYME
     private void pressRegister3() {
         clickElement(By.xpath("//*[@id=\"ember1822\"]/span"));
     }
