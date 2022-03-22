@@ -24,7 +24,7 @@ public class LoginPage extends BasePage {
 
         sendKeysToElement(By.xpath("//*[@id=\"ember1795\"]"), Constant.name);
         String name = DriverSingleton.getDriverInstance().findElement(By.xpath("//*[@id=\"ember1795\"]")).getAttribute("value");
-        System.out.println(name);
+//        System.out.println(name);
         Assert.assertEquals(name, Constant.name);
         sendKeysToElement(By.xpath("//*[@id=\"ember1802\"]"), Constant.email);
         String email = DriverSingleton.getDriverInstance().findElement(By.xpath("//*[@id=\"ember1802\"]")).getAttribute("value");
