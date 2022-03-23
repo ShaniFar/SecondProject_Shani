@@ -7,9 +7,9 @@ public class LoginPage extends BasePage {
     //פונקצית הלוגין - תהליך הלוגין
     {
         pressRegister();
-        pressRegister2();
+        pressRegisterInRegistrationWindow();
         enterValues();
-        pressRegister3();
+        pressRegistrationConfirmation();
     }
 
     //לחיצה על כניסה\הרשמה
@@ -18,7 +18,7 @@ public class LoginPage extends BasePage {
     }
 
     //לחיצה על הרשמה
-    private void pressRegister2() {
+    private void pressRegisterInRegistrationWindow() {
         clickElement(By.className("text-link"));
     }
 
@@ -40,7 +40,7 @@ public class LoginPage extends BasePage {
     }
 
     //לחיצה על הרשמה לBUYME
-    private void pressRegister3() {
+    private void pressRegistrationConfirmation() {
         clickElement(By.xpath("//*[@id=\"ember1822\"]/span"));
     }
 

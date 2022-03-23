@@ -43,7 +43,7 @@ public class MainTest {
 
     @Test
     //הזנת פרטי שולח המתנה
-    public void test_05_sendInformation() throws InterruptedException {
+    public void test_05_sendInformation()  {
         SendInformation sendInformation =new SendInformation();
         sendInformation.sendInformation();
     }

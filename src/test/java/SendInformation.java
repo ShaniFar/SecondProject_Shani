@@ -9,8 +9,8 @@ import java.time.Duration;
 public class SendInformation extends BasePage {
     WebDriverWait wait = new WebDriverWait(DriverSingleton.getDriverInstance(), Duration.ofSeconds(10));
 
-    public void sendInformation() throws InterruptedException {
-        pressRadioBottomNow();
+    public void sendInformation()  {
+        pressRadioButtonNow();
         pickEmail();
         insertMail();
         assertSender();
@@ -18,7 +18,7 @@ public class SendInformation extends BasePage {
     }
 
     //בחירת ערך עכשיו
-    private void pressRadioBottomNow() {
+    private void pressRadioButtonNow() {
         wait.until(ExpectedConditions.elementToBeClickable(By.className("button-now"))).click();
         clickElement(By.className(("button-now")));
     }
@@ -42,10 +42,11 @@ public class SendInformation extends BasePage {
     }
 
     //לחיצה על לתשלום
-    private void clickForPay() throws InterruptedException {
+    private void clickForPay()  {
 //      WebElement clickPay = DriverSingleton.getDriverInstance().findElement(By.id("ember2593"));
-        WebElement clickPay = DriverSingleton.getDriverInstance().findElement(By.className("label"));
+       /* WebElement clickPay = DriverSingleton.getDriverInstance().findElement(By.className("label"));
         wait.until(ExpectedConditions.elementToBeClickable(clickPay));
-        clickPay.click();
+        clickPay.click();*/
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("ember2626"))).click();
     }
 }

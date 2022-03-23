@@ -7,13 +7,11 @@ public class BasePage {
     {
         getWebElement(locator).click();
     }
-
     public void sendKeysToElement(By locator, String text)
     //פונקצית תשתית לשליחת ערך לאלמנטים
     {
         getWebElement(locator).sendKeys(text);
     }
-
 
     private WebElement getWebElement(By locator)
     //פונקציה למציאת אלמנט - משמשת לשתי הפונקציות העליונות
