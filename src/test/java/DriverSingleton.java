@@ -1,7 +1,9 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class DriverSingleton {
+public class DriverSingleton
+//מחלקה ליצירת דרייבר
+{
     private static WebDriver driver;
     public static WebDriver getDriverInstance(){
         if(driver == null){

@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -43,8 +44,9 @@ public class SendInformation extends BasePage {
 
     //לחיצה על לתשלום
     private void clickForPay() throws InterruptedException {
-        Thread.sleep(5000);
-//        clickElement(By.id("ember2593"));
-        clickElement(By.xpath("//*[@id=\"ember2593\"]"));
+//      WebElement clickPay = DriverSingleton.getDriverInstance().findElement(By.id("ember2593"));
+        WebElement clickPay = DriverSingleton.getDriverInstance().findElement(By.className("label"));
+        wait.until(ExpectedConditions.elementToBeClickable(clickPay));
+        clickPay.click();
     }
 }

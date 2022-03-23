@@ -39,13 +39,7 @@ public class LoginPage extends BasePage {
 
     }
 
-    /*  private void assertLoginValues() {
-          String firstName = "Shani";
-          String email = "sp0548412037@gmail.com";
-          String password = "Sp123456";
-
-      }*/
-//לחיצה על הרשמה לBUYME
+    //לחיצה על הרשמה לBUYME
     private void pressRegister3() {
         clickElement(By.xpath("//*[@id=\"ember1822\"]/span"));
     }
