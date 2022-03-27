@@ -56,15 +56,5 @@ public class BasePage {
         return doc.getElementsByTagName(keyName).item(0).getTextContent();
     }
 
-    public static String takeScreenShot(String ImagesPath) {
-        TakesScreenshot takesScreenshot = (TakesScreenshot) DriverSingleton.getDriverInstance();
-        File screenShotFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
-        File destinationFile = new File(ImagesPath + ".png");
-        try {
-            FileUtils.copyFile(screenShotFile, destinationFile);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        return ImagesPath + ".png";
-    }
+
 }

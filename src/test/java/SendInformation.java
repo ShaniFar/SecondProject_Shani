@@ -13,7 +13,7 @@ public class SendInformation extends BasePage {
         pressRadioButtonNow();
         pickEmail();
         insertMail();
-        assertSender();
+//        assertSender();
         clickForPay();
     }
 
@@ -33,13 +33,13 @@ public class SendInformation extends BasePage {
         sendKeysToElement(By.id("email"), "sp0548412037@gmail.com");
     }
 
-    //הזנת שולח והשוואת הערכים
+ /*   //הזנת שולח והשוואת הערכים
     private void assertSender() {
         DriverSingleton.getDriverInstance().findElement(By.xpath("/html/body/div[3]/div/div/div[3]/div/div/div[1]/form/div[3]/div[2]/label/input")).clear();
       sendKeysToElement(By.xpath("/html/body/div[3]/div/div/div[3]/div/div/div[1]/form/div[3]/div[2]/label/input"), "Shani");
         String sender = "Shani";
         Assert.assertEquals(sender, DriverSingleton.getDriverInstance().findElement(By.xpath("/html/body/div[3]/div/div/div[3]/div/div/div[1]/form/div[3]/div[2]/label/input")).getAttribute("value"));
-    }
+    }*/
 
     //לחיצה על לתשלום
     private void clickForPay() {
