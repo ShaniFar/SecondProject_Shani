@@ -2,13 +2,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
 import java.time.Duration;
 
 //screen 5
 public class SendInformation extends BasePage {
     WebDriverWait wait = new WebDriverWait(DriverSingleton.getDriverInstance(), Duration.ofSeconds(10));
 
-    public void sendInformation()  {
+    public void sendInformation() {
         pressRadioButtonNow();
         pickEmail();
         insertMail();
@@ -34,14 +35,14 @@ public class SendInformation extends BasePage {
 
     //הזנת שולח והשוואת הערכים
     private void assertSender() {
-        DriverSingleton.getDriverInstance().findElement(By.cssSelector("input[maxlength=25]")).clear();
-        sendKeysToElement(By.cssSelector("input[maxlength=25]"), "Shani");
+        DriverSingleton.getDriverInstance().findElement(By.xpath("/html/body/div[3]/div/div/div[3]/div/div/div[1]/form/div[3]/div[2]/label/input")).clear();
+      sendKeysToElement(By.xpath("/html/body/div[3]/div/div/div[3]/div/div/div[1]/form/div[3]/div[2]/label/input"), "Shani");
         String sender = "Shani";
-        Assert.assertEquals(sender, DriverSingleton.getDriverInstance().findElement(By.cssSelector("input[maxlength=25]")).getAttribute("value"));
+        Assert.assertEquals(sender, DriverSingleton.getDriverInstance().findElement(By.xpath("/html/body/div[3]/div/div/div[3]/div/div/div[1]/form/div[3]/div[2]/label/input")).getAttribute("value"));
     }
 
     //לחיצה על לתשלום
-    private void clickForPay()  {
+    private void clickForPay() {
 //      WebElement clickPay = DriverSingleton.getDriverInstance().findElement(By.id("ember2593"));
        /* WebElement clickPay = DriverSingleton.getDriverInstance().findElement(By.className("label"));
         wait.until(ExpectedConditions.elementToBeClickable(clickPay));

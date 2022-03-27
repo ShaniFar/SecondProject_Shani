@@ -11,7 +11,7 @@ public class PickBusiness extends BasePage {
     }
 
     private void selectBusiness() {
-        clickElement(By.id("ember2033"));
+        clickElement(By.id("ember2034"));
     }
 
     //בחירת מחיר למתנה
@@ -25,5 +25,4 @@ public class PickBusiness extends BasePage {
         clickElement(By.className("money-btn"));
     }
 }
-
 

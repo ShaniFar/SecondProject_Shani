@@ -27,7 +27,7 @@ public class LoginPage extends BasePage {
 
     //הכנסת ערכים לשדות ההרשמה
     private void enterValues() throws InterruptedException {
-       List<WebElement> elements = DriverSingleton.getDriverInstance().findElements(By.tagName("input"));
+        List<WebElement> elements = DriverSingleton.getDriverInstance().findElements(By.tagName("input"));
         sendKeysToElementList(0,Constant.name,elements);
         Thread.sleep(5000);
         String name = getWebElementFromList(elements,0).getAttribute("value");
@@ -50,7 +50,7 @@ public class LoginPage extends BasePage {
 
     //לחיצה על הרשמה לBUYME
     private void pressRegistrationConfirmation() {
-        clickElement(By.xpath("//*[@id=\"ember1821\"]"));
+        clickElement(By.xpath("//*[@id=\"ember1822\"]"));
     }
 
 

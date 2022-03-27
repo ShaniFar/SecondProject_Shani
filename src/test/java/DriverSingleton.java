@@ -8,7 +8,7 @@ public class DriverSingleton
 
     public static WebDriver getDriverInstance(){
         if(driver == null){
-            System.setProperty("webdriver.chrome.driver", "C:\\Users\\shani_f\\Documents\\Automation\\chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", Constant.CHROMEDRIVER_PATH);
             driver = new ChromeDriver();
         }
 

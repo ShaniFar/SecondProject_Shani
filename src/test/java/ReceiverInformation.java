@@ -4,7 +4,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import java.time.Duration;
-import java.util.List;
 
 //screen 4
 public class ReceiverInformation extends BasePage {
@@ -28,11 +27,11 @@ public class ReceiverInformation extends BasePage {
 
     //הזנת שם מקבל המתנה
     private void receiverPresentName() throws InterruptedException {
-        WebElement receiverPresentName = DriverSingleton.getDriverInstance().findElement(By.id("ember2425"));
+        WebElement receiverPresentName = DriverSingleton.getDriverInstance().findElement(By.id("ember2426"));
         Thread.sleep(2500);
         receiverPresentName.sendKeys("Yael");
         String receiver = "Yael";
-        Assert.assertEquals(DriverSingleton.getDriverInstance().findElement(By.id("ember2425")).getAttribute("value"), receiver);
+        Assert.assertEquals(DriverSingleton.getDriverInstance().findElement(By.id("ember2426")).getAttribute("value"), receiver);
     }
 
     //בחירת אירוע
@@ -45,7 +44,7 @@ public class ReceiverInformation extends BasePage {
         System.out.println(li);
         System.out.println(elements.get(0));
         System.out.println(elements.get(1));*/
-        WebElement valueInSelection = DriverSingleton.getDriverInstance().findElement(By.id("ember2520"));
+        WebElement valueInSelection = DriverSingleton.getDriverInstance().findElement(By.id("ember2525"));
         wait.until(ExpectedConditions.elementToBeClickable(mySelection));
         valueInSelection.click();
     }
