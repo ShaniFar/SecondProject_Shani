@@ -1,9 +1,12 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+
+import java.util.List;
 
 //screen 1
 public class LoginPage extends BasePage {
-    public void login()
+    public void login()throws InterruptedException
     //פונקצית הלוגין - תהליך הלוגין
     {
         pressRegister();
@@ -23,25 +26,31 @@ public class LoginPage extends BasePage {
     }
 
     //הכנסת ערכים לשדות ההרשמה
-    private void enterValues() {
-        sendKeysToElement(By.xpath("//*[@id=\"ember1795\"]"), Constant.name);
-        String name = DriverSingleton.getDriverInstance().findElement(By.xpath("//*[@id=\"ember1795\"]")).getAttribute("value");
+    private void enterValues() throws InterruptedException {
+       List<WebElement> elements = DriverSingleton.getDriverInstance().findElements(By.tagName("input"));
+        sendKeysToElementList(0,Constant.name,elements);
+        Thread.sleep(5000);
+        String name = getWebElementFromList(elements,0).getAttribute("value");
         Assert.assertEquals(name, Constant.name);
-        sendKeysToElement(By.xpath("//*[@id=\"ember1802\"]"), Constant.email);
-        String email = DriverSingleton.getDriverInstance().findElement(By.xpath("//*[@id=\"ember1802\"]")).getAttribute("value");
+        sendKeysToElementList(1,Constant.email,elements);
+        Thread.sleep(2000);
+        String email = getWebElementFromList(elements,1).getAttribute("value");
         Assert.assertEquals(email, Constant.email);
-        sendKeysToElement(By.id("valPass"), Constant.password);
-        String password = DriverSingleton.getDriverInstance().findElement(By.id("valPass")).getAttribute("value");
+        sendKeysToElementList(2,Constant.password,elements);
+        Thread.sleep(2000);
+        String password = getWebElementFromList(elements,2).getAttribute("value");
         Assert.assertEquals(password, Constant.password);
-        sendKeysToElement(By.xpath("//*[@id=\"ember1816\"]"), Constant.password);
-        String passwordAuthentication = DriverSingleton.getDriverInstance().findElement(By.xpath("//*[@id=\"ember1816\"]")).getAttribute("value");
-        Assert.assertEquals(passwordAuthentication, Constant.password);
+        sendKeysToElementList(3,Constant.password,elements);
+        Thread.sleep(2000);
+        String passwordAuthentication = getWebElementFromList(elements,3).getAttribute("value");
+        Assert.assertEquals(password, Constant.password);
+
 
     }
 
     //לחיצה על הרשמה לBUYME
     private void pressRegistrationConfirmation() {
-        clickElement(By.xpath("//*[@id=\"ember1822\"]/span"));
+        clickElement(By.xpath("//*[@id=\"ember1821\"]"));
     }
 
 

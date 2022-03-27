@@ -1,5 +1,4 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -30,7 +29,7 @@ public class SendInformation extends BasePage {
 
     //הזנת אימייל
     private void insertMail() {
-        sendKeysToElement(By.id("ember2596"), "sp0548412037@gmail.com");
+        sendKeysToElement(By.id("email"), "sp0548412037@gmail.com");
     }
 
     //הזנת שולח והשוואת הערכים
@@ -47,6 +46,6 @@ public class SendInformation extends BasePage {
        /* WebElement clickPay = DriverSingleton.getDriverInstance().findElement(By.className("label"));
         wait.until(ExpectedConditions.elementToBeClickable(clickPay));
         clickPay.click();*/
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("ember2626"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.className("bm-btn"))).click();
     }
 }

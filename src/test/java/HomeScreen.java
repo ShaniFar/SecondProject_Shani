@@ -3,6 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
+import java.util.List;
 
 //screen 2
 public class HomeScreen extends BasePage {
@@ -18,23 +19,25 @@ public class HomeScreen extends BasePage {
     }
 //בחירת סכום
     private void pickPricePoint() throws InterruptedException {
-        WebElement price = DriverSingleton.getDriverInstance().findElement(By.cssSelector("span[alt=סכום]"));
-        wait.until(ExpectedConditions.elementToBeClickable(price));
-        price.click();
+        wait.until(ExpectedConditions.elementToBeClickable(getWebElement(By.cssSelector("span[alt=סכום]"))));
+        clickElement(By.cssSelector("span[alt=סכום]"));
         wait.until(ExpectedConditions.elementToBeClickable(By.id("ember1066"))).click();
     }
 //בחירת איזור
-    private void PickRegion() {
+    private void PickRegion() throws InterruptedException {
         clickElement(By.cssSelector("span[alt=אזור]"));
+        Thread.sleep(2000);
         clickElement(By.id("ember1103"));
     }
 //בחירת קטגוריה
-    private void PickCategory() {
+    private void PickCategory() throws InterruptedException {
         clickElement(By.cssSelector("span[alt=קטגוריה]"));
+        Thread.sleep(2000);
         clickElement(By.id("ember1161"));
     }
 //לחיצה על בחירת מתנה
-    private void pressChooseGift() {
+    private void pressChooseGift() throws InterruptedException {
+        Thread.sleep(3000);
         clickElement(By.id("ember1188"));
     }
 

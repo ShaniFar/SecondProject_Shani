@@ -3,17 +3,20 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import java.time.Duration;
 
+
 public class MainTest {
+
     @BeforeClass
     public void beforeAll() {
-        DriverSingleton.getDriverInstance().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        DriverSingleton.getDriverInstance().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         DriverSingleton.getDriverInstance().get("https://buyme.co.il/");
         DriverSingleton.getDriverInstance().manage().window().maximize();
+
     }
 
     @Test
     //הרשמה לאתר
-    public void test01_testLogin() {
+    public void test01_testLogin() throws InterruptedException {
         LoginPage loginPage = new LoginPage();
         loginPage.login();
     }
@@ -43,8 +46,10 @@ public class MainTest {
 
     @Test
     //הזנת פרטי שולח המתנה
-    public void test_05_sendInformation()  {
-        SendInformation sendInformation =new SendInformation();
+    public void test_05_sendInformation() {
+        SendInformation sendInformation = new SendInformation();
         sendInformation.sendInformation();
     }
+
+
 }

@@ -4,6 +4,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import java.time.Duration;
+import java.util.List;
 
 //screen 4
 public class ReceiverInformation extends BasePage {
@@ -27,11 +28,11 @@ public class ReceiverInformation extends BasePage {
 
     //הזנת שם מקבל המתנה
     private void receiverPresentName() throws InterruptedException {
-        WebElement receiverPresentName = DriverSingleton.getDriverInstance().findElement(By.xpath("//*[@id=\"ember2424\"]"));
+        WebElement receiverPresentName = DriverSingleton.getDriverInstance().findElement(By.id("ember2425"));
         Thread.sleep(2500);
         receiverPresentName.sendKeys("Yael");
         String receiver = "Yael";
-        Assert.assertEquals(DriverSingleton.getDriverInstance().findElement(By.xpath("//*[@id=\"ember2424\"]")).getAttribute("value"), receiver);
+        Assert.assertEquals(DriverSingleton.getDriverInstance().findElement(By.id("ember2425")).getAttribute("value"), receiver);
     }
 
     //בחירת אירוע
@@ -39,7 +40,12 @@ public class ReceiverInformation extends BasePage {
         WebElement mySelection = DriverSingleton.getDriverInstance().findElement(By.className("selected-name"));
         wait.until(ExpectedConditions.elementToBeClickable(mySelection));
         mySelection.click();
-        WebElement valueInSelection = DriverSingleton.getDriverInstance().findElement(By.xpath("//*[@id=\"ember2519\"]"));
+        /*List<WebElement> elements = DriverSingleton.getDriverInstance().findElements(By.tagName("li"));
+        int li = elements.size();
+        System.out.println(li);
+        System.out.println(elements.get(0));
+        System.out.println(elements.get(1));*/
+        WebElement valueInSelection = DriverSingleton.getDriverInstance().findElement(By.id("ember2520"));
         wait.until(ExpectedConditions.elementToBeClickable(mySelection));
         valueInSelection.click();
     }
@@ -53,7 +59,7 @@ public class ReceiverInformation extends BasePage {
     //העלאת תמונה
     private void uploadPicture() throws InterruptedException {
         Thread.sleep(5000);
-        WebElement picture = DriverSingleton.getDriverInstance().findElement(By.id("ember2444"));
+        WebElement picture = DriverSingleton.getDriverInstance().findElement(By.cssSelector("input[name=logo]"));
         Thread.sleep(5000);
         picture.sendKeys("C:\\Users\\shani_f\\Pictures\\Snow\\IMG_6107.JPG");
     }
