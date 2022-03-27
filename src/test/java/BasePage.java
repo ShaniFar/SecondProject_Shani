@@ -4,7 +4,6 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.w3c.dom.Document;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
@@ -26,18 +25,24 @@ public class BasePage {
         getWebElement(locator).sendKeys(text);
     }
 
-    public void sendKeysToElementList(int index, String text, List <WebElement> list) {
+    public void sendKeysToElementList(int index, String text, List <WebElement> list)
+    //פונקציה לשליחת ערך לאלמנט שהוא חלק מרשימה
+    {
         list.get(index).sendKeys(text);
     }
 
     public WebElement getWebElementFromList(List <WebElement> list,int index)
+            //פונקציה לשליפת אלמנט מתוך רשימה
     {
         return list.get(index);
     }
 
-    public void clickElementInList(List <WebElement> list,int index){
+    public void clickElementInList(List <WebElement> list,int index)
+    //פונקציה ללחיצה על אלמנט שהוא חלק מרשימה
+    {
         list.get(index).click();
     }
+
 
     public WebElement getWebElement(By locator)
     //פונקציה למציאת אלמנט - משמשת לשתי הפונקציות העליונות
@@ -45,7 +50,10 @@ public class BasePage {
         return DriverSingleton.getDriverInstance().findElement(locator);
     }
 
-    public static String getData (String keyName) throws Exception{
+
+    public static String getData (String keyName) throws Exception
+    //פונקציה להבאת DATA מתוך קובץ XML בו  קיימות הגדרות לפרויקט
+    {
         ClassLoader classLoader = BasePage.class.getClassLoader();
         String xmlFilePath = String.valueOf(new File(Objects.requireNonNull(classLoader.getResource("data.xml")).getFile()));
         File fXmlFile = new File(xmlFilePath);

@@ -17,6 +17,7 @@ import java.time.Duration;
 
 public class MainTest {
 
+    //הגדרת משתנים להפקת דוחות
     private static ExtentReports extent= new ExtentReports();
     private static ExtentTest test = extent.createTest("MyFirstTest", "Sample description");
 
@@ -27,6 +28,7 @@ public class MainTest {
 //        DriverSingleton.getDriverInstance().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         DriverSingleton.getDriverInstance().get("https://buyme.co.il/");
         DriverSingleton.getDriverInstance().manage().window().maximize();
+       //יצירת אובייקטי הפקת דוחות
         ExtentSparkReporter htmlReporter = new ExtentSparkReporter("C://Users//extent.html");
         extent.attachReporter(htmlReporter);
         test.log(Status.INFO, "before test method");
@@ -39,7 +41,7 @@ public class MainTest {
        try {
            LoginPage loginPage = new LoginPage();
            loginPage.login();
-           test.pass("test 1 passed");
+           test.log(Status.PASS, "test 1 passed");
        } catch (Exception e)
        {
            e.printStackTrace();
@@ -121,7 +123,7 @@ public class MainTest {
         DriverSingleton.getDriverInstance().quit();
         extent.flush();
     }
-
+//פונקצית תשתית ליצירת צילומי מסך
     public static String takeScreenShot(String ImagesPath) {
         TakesScreenshot takesScreenshot = (TakesScreenshot) DriverSingleton.getDriverInstance();
         File screenShotFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
