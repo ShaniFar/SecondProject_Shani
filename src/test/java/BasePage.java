@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class BasePage {
+public class BasePage  {
     public void clickElement(By locator)
     //פונקצית תשתית ללחיצה על אלמנטים
     {

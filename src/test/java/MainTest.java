@@ -6,10 +6,12 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
@@ -18,36 +20,52 @@ import java.time.Duration;
 public class MainTest {
 
     //הגדרת משתנים להפקת דוחות
-    private static ExtentReports extent= new ExtentReports();
-    private static ExtentTest test = extent.createTest("MyFirstTest", "Sample description");
-
+    private static ExtentReports extent;
+    private static ExtentTest test;
+    String timeNow = String.valueOf(System.currentTimeMillis());
 
     @BeforeClass
-    public void beforeAll() {
-        DriverSingleton.getDriverInstance().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-//        DriverSingleton.getDriverInstance().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        DriverSingleton.getDriverInstance().get("https://buyme.co.il/");
-        DriverSingleton.getDriverInstance().manage().window().maximize();
-       //יצירת אובייקטי הפקת דוחות
-        ExtentSparkReporter htmlReporter = new ExtentSparkReporter("C://Users//extent.html");
+    public void beforeAll() throws Exception {
+
+        //יצירת אובייקטי הפקת דוחות
+
+        String cwd = System.getProperty("user.dir");
+        ExtentSparkReporter htmlReporter = new ExtentSparkReporter(cwd + "\\extent.html");
+        // attach reporter
+        extent = new ExtentReports();
         extent.attachReporter(htmlReporter);
-        test.log(Status.INFO, "before test method");
+        // name your test and add description
+        test = extent.createTest("MyFirstTest", "Sample description");
+
+        // log results
+        test.log(Status.INFO, "@Before class");
+
+        try {
+            DriverSingleton.getDriverInstance().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+            DriverSingleton.getDriverInstance().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+            DriverSingleton.getDriverInstance().get("https://buyme.co.il/");
+            DriverSingleton.getDriverInstance().manage().window().maximize();
+            test.log(Status.PASS, "Driver established successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+            test.log(Status.FAIL, "Driver connection failed! " + e.getMessage());
+            throw new Exception("Driver failed");
+        }
 
     }
 
     @Test
     //הרשמה לאתר
     public void test01_testLogin() throws InterruptedException {
-       try {
-           LoginPage loginPage = new LoginPage();
-           loginPage.login();
-           test.log(Status.PASS, "test 1 passed");
-       } catch (Exception e)
-       {
-           e.printStackTrace();
-           String timeNow = String.valueOf(System.currentTimeMillis());
-           test.log(Status.FAIL,"test 2 failed"+e.getMessage(),MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(timeNow)).build());
-       }
+        try {
+            LoginPage loginPage = new LoginPage();
+            loginPage.login();
+            test.log(Status.PASS, "test 1 testLogin passed");
+        } catch (Exception e) {
+            e.printStackTrace();
+            String timeNow = String.valueOf(System.currentTimeMillis());
+            test.log(Status.FAIL, "test 2 testLogin failed" + e.getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(timeNow)).build());
+        }
     }
 
     @Test
@@ -56,12 +74,11 @@ public class MainTest {
         try {
             HomeScreen homeScreen = new HomeScreen();
             homeScreen.loggedIn();
-            test.pass("test 2 passed");
-        } catch (Exception e)
-        {
+            test.pass("test 2 loggedIn passed");
+        } catch (Exception e) {
             e.printStackTrace();
             String timeNow = String.valueOf(System.currentTimeMillis());
-            test.log(Status.FAIL,"test 1 failed"+e.getMessage(),MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(timeNow)).build());
+            test.log(Status.FAIL, "test 2 loggedIn failed" + e.getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(timeNow)).build());
         }
 
     }
@@ -69,34 +86,32 @@ public class MainTest {
     @Test
     //כניסה למתנה ובחירת סכום
     public void test03_PickBusiness() {
-       try {
-           String businessURL = "https://buyme.co.il/search?budget=3&category=204&region=14";
-           Assert.assertEquals(businessURL, DriverSingleton.getDriverInstance().getCurrentUrl());
-           PickBusiness pickBusiness = new PickBusiness();
-           pickBusiness.pickBusiness();
-           test.pass("test 3 passed");
-       }catch (Exception e)
-       {
-           e.printStackTrace();
-           String timeNow = String.valueOf(System.currentTimeMillis());
-           test.log(Status.FAIL,"test 3 failed"+e.getMessage(),MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(timeNow)).build());
-       }
+        try {
+            String businessURL = "https://buyme.co.il/search?budget=3&category=204&region=14";
+            Assert.assertEquals(businessURL, DriverSingleton.getDriverInstance().getCurrentUrl());
+            PickBusiness pickBusiness = new PickBusiness();
+            pickBusiness.pickBusiness();
+            test.pass("test 3 PickBusiness passed");
+        } catch (Exception e) {
+            e.printStackTrace();
+            String timeNow = String.valueOf(System.currentTimeMillis());
+            test.log(Status.FAIL, "test 3 PickBusiness failed" + e.getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(timeNow)).build());
+        }
 
     }
 
     @Test
     //הזנת פרטי מקבל המתנה
     public void test_04_ReceiverInformation() throws InterruptedException {
-       try {
-           ReceiverInformation receiverInformation = new ReceiverInformation();
-           receiverInformation.receiverInformation();
-           test.pass("test 4 passed");
-       }catch (Exception e)
-       {
-           e.printStackTrace();
-           String timeNow = String.valueOf(System.currentTimeMillis());
-           test.log(Status.FAIL,"test 4 failed"+e.getMessage(),MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(timeNow)).build());
-       }
+        try {
+            ReceiverInformation receiverInformation = new ReceiverInformation();
+            receiverInformation.receiverInformation();
+            test.pass("test 4 ReceiverInformation passed");
+        } catch (Exception e) {
+            e.printStackTrace();
+            String timeNow = String.valueOf(System.currentTimeMillis());
+            test.log(Status.FAIL, "test 4 ReceiverInformation failed" + e.getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(timeNow)).build());
+        }
 
 
     }
@@ -107,12 +122,11 @@ public class MainTest {
         try {
             SendInformation sendInformation = new SendInformation();
             sendInformation.sendInformation();
-            test.pass("test 4 passed");
-        }catch (Exception e)
-        {
+            test.pass("test 4 sendInformation passed");
+        } catch (Exception e) {
             e.printStackTrace();
             String timeNow = String.valueOf(System.currentTimeMillis());
-            test.log(Status.FAIL,"test 5 failed"+e.getMessage(),MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(timeNow)).build());
+            test.log(Status.FAIL, "test 5 sendInformation failed" + e.getMessage(), MediaEntityBuilder.createScreenCaptureFromPath(takeScreenShot(timeNow)).build());
         }
 
     }
@@ -123,8 +137,9 @@ public class MainTest {
         DriverSingleton.getDriverInstance().quit();
         extent.flush();
     }
-//פונקצית תשתית ליצירת צילומי מסך
-    public static String takeScreenShot(String ImagesPath) {
+
+    //פונקצית תשתית ליצירת צילומי מסך
+        public static String takeScreenShot(String ImagesPath) {
         TakesScreenshot takesScreenshot = (TakesScreenshot) DriverSingleton.getDriverInstance();
         File screenShotFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
         File destinationFile = new File(ImagesPath + ".png");

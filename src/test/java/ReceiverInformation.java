@@ -39,11 +39,6 @@ public class ReceiverInformation extends BasePage {
         WebElement mySelection = DriverSingleton.getDriverInstance().findElement(By.className("selected-name"));
         wait.until(ExpectedConditions.elementToBeClickable(mySelection));
         mySelection.click();
-        /*List<WebElement> elements = DriverSingleton.getDriverInstance().findElements(By.tagName("li"));
-        int li = elements.size();
-        System.out.println(li);
-        System.out.println(elements.get(0));
-        System.out.println(elements.get(1));*/
         WebElement valueInSelection = DriverSingleton.getDriverInstance().findElement(By.id("ember2525"));
         wait.until(ExpectedConditions.elementToBeClickable(mySelection));
         valueInSelection.click();
