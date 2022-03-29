@@ -6,7 +6,6 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -28,7 +27,7 @@ public class MainTest {
     public void beforeAll() throws Exception {
 
         //יצירת אובייקטי הפקת דוחות
-
+        String url = BasePage.getData("URL");
         String cwd = System.getProperty("user.dir");
         ExtentSparkReporter htmlReporter = new ExtentSparkReporter(cwd + "\\extent.html");
         // attach reporter
@@ -42,8 +41,8 @@ public class MainTest {
 
         try {
             DriverSingleton.getDriverInstance().manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-            DriverSingleton.getDriverInstance().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-            DriverSingleton.getDriverInstance().get("https://buyme.co.il/");
+//            DriverSingleton.getDriverInstance().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+            DriverSingleton.getDriverInstance().get(url);
             DriverSingleton.getDriverInstance().manage().window().maximize();
             test.log(Status.PASS, "Driver established successfully");
         } catch (Exception e) {
@@ -139,7 +138,7 @@ public class MainTest {
     }
 
     //פונקצית תשתית ליצירת צילומי מסך
-        public static String takeScreenShot(String ImagesPath) {
+    public static String takeScreenShot(String ImagesPath) {
         TakesScreenshot takesScreenshot = (TakesScreenshot) DriverSingleton.getDriverInstance();
         File screenShotFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
         File destinationFile = new File(ImagesPath + ".png");

@@ -25,4 +25,3 @@ public class PickBusiness extends BasePage {
         clickElement(By.className("money-btn"));
     }
 }
-
