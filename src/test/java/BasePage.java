@@ -51,6 +51,7 @@ public class BasePage {
 
 
     public static String getData(String keyName) {
+        //פונקציה להבאת DATA מהקובץ XML
         ClassLoader classLoader = DriverSingleton.class.getClassLoader();
         String xmlFilePath = String.valueOf(new File(classLoader.getResource("data.xml").getFile()));
         File fXmlFile = new File(xmlFilePath);
